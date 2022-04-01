@@ -1,7 +1,9 @@
-// import React from 'react'; // 최신 버전부터는 따로 불러오지 않아도 됨.
-import Expenses from './components/Expenses';
+import React from 'react'; // 최신 버전부터는 따로 불러오지 않아도 됨.
 
-function App() {
+import Expenses from './components/Expenses/Expenses';
+import NewExpense from './components/NewExpense/NewExpense';
+
+const App = () => {
   const expenses = [
     {
       id: 'e1',
@@ -12,7 +14,7 @@ function App() {
     { id: 'e2', title: 'New TV', amount: 799.49, date: new Date(2021, 2, 12) },
     {
       id: 'e3',
-      title: 'Car Insurance',
+      title: 'Car Insurance', 
       amount: 294.67,
       date: new Date(2021, 2, 28),
     },
@@ -28,6 +30,7 @@ function App() {
 
   return (
     <div>
+      <NewExpense />
       <Expenses items={expenses} />
     </div>
   );
