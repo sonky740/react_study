@@ -37,6 +37,6 @@
     ]
   },
   "devDependencies": {
-    "react-error-overlay": "^6.0.10"
+    "styled-components": "^5.3.5"
   }
 }
