@@ -37,21 +37,12 @@
 }
 
 .bump {
-  animation: bump 300ms ease-out;
+  animation: bump 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 @keyframes bump {
   0% {
-    transform: scale(1);
-  }
-  10% {
-    transform: scale(0.9);
-  }
-  30% {
-    transform: scale(1.1);
-  }
-  50% {
-    transform: scale(1.15);
+    transform: scale(0.8);
   }
   100% {
     transform: scale(1);
