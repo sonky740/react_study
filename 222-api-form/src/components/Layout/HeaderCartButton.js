@@ -27,7 +27,6 @@ const HeaderCartButton = (props) => {
       'animationend',
       () => {
         setBtnIsHighlighted(false);
-        console.log('a');
       },
       {
         once: true,
