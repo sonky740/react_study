@@ -3,31 +3,15 @@ import { useParams, Route, Link, useRouteMatch } from 'react-router-dom';
 
 import HighlightedQuote from '../components/quotes/HighlightedQuote';
 import Comments from '../components/comments/Comments';
-import usehttp from '../hooks/use-http';
 import useHttp from '../hooks/use-http';
 import { getSingleQuote } from '../lib/api';
 import LoadingSpinner from '../components/UI/LoadingSpinner';
-
-const DUMMY_QUOTES = [
-  {
-    id: 'q1',
-    author: 'Max',
-    text: 'Learning React is fun!',
-  },
-  {
-    id: 'q2',
-    author: 'Maximilian',
-    text: 'Learning React is great!',
-  },
-];
 
 const QuoteDetail = () => {
   const match = useRouteMatch();
   const params = useParams();
   const { quoteId } = params;
   const { sendRequest, status, data: loadedQuote, error } = useHttp(getSingleQuote, true);
-
-  const quote = DUMMY_QUOTES.find((quote) => quote.id === params.quoteId);
 
   useEffect(() => {
     sendRequest(quoteId);
