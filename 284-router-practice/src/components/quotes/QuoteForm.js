@@ -31,6 +31,7 @@ const QuoteForm = (props) => {
 
   return (
     <>
+      {/* react-route-dom6에는 Prompt 기능을 직접 만들어야함. */}
       <Prompt
         when={isEntering}
         message={(location) =>
