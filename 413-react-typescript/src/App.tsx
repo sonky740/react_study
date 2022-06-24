@@ -1,12 +1,14 @@
+import NewTodo from './components/NewTodo';
 import Todos from './components/Todos';
-import './App.css';
+import TodosContexProvider from './store/todos-contenxt';
 
 const App = () => {
   return (
-    <div>
-      <Todos items={['Learn React', 'Learn TypesScript']} />
-    </div>
+    <TodosContexProvider>
+      <NewTodo />
+      <Todos />
+    </TodosContexProvider>
   );
-}
+};
 
 export default App;
