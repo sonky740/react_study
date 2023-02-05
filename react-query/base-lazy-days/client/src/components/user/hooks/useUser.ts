@@ -2,7 +2,7 @@ import { AxiosResponse } from 'axios';
 
 import type { User } from '../../../../../shared/types';
 import { axiosInstance, getJWTHeader } from '../../../axiosInstance';
-import { queryKeys } from '../../../react-query/constants';
+import { QueryKeys } from '../../../react-query/constants';
 import {
   clearStoredUser,
   getStoredUser,

@@ -3,7 +3,7 @@ import dayjs from 'dayjs';
 import { Dispatch, SetStateAction, useState } from 'react';
 
 import { axiosInstance } from '../../../axiosInstance';
-import { queryKeys } from '../../../react-query/constants';
+import { QueryKeys } from '../../../react-query/constants';
 import { useUser } from '../../user/hooks/useUser';
 import { AppointmentDateMap } from '../types';
 import { getAvailableAppointments } from '../utils';
