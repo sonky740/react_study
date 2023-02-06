@@ -5,9 +5,9 @@
 //   staff: 'staff',
 // };
 
-export enum QueryKeys {
-  TREATMENTS = 'treatments',
-  APPOINTMENTS = 'appointments',
-  USER = 'user',
-  STAFF = 'staff',
-}
+export const QueryKeys = {
+  TREATMENTS: 'treatments',
+  APPOINTMENTS: 'appointments',
+  USER: 'user',
+  STAFF: 'staff',
+} as const;
