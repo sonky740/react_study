@@ -7,7 +7,9 @@ import { generateQueryClient } from '../react-query/queryClient';
 setLogger({
   log: console.log,
   warn: console.warn,
-  error: () => {},
+  error: () => {
+    // swallow the errors
+  },
 });
 
 const generateTestQueryClient = () => {
@@ -28,9 +30,9 @@ export function renderWithQueryClient(ui: ReactElement, client?: QueryClient) {
 // import { defaultQueryClientOptions } from '../react-query/queryClient';
 
 // from https://tkdodo.eu/blog/testing-react-query#for-custom-hooks
-// export const createQueryClientWrapper = (): React.FC => {
-//   const queryClient = generateTestQueryClient();
-//   return ({ children }) => (
-//     <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-//   );
-// };
+export const createQueryClientWrapper = (): React.FC => {
+  const queryClient = generateTestQueryClient();
+  return ({ children }) => (
+    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+  );
+};
