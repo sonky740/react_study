@@ -26,3 +26,13 @@ findByTestId, findByText, findByRole, findByPlaceholderText: 이러한 메서드
 ## fireEvent => userEvent
 
 - userEvent로 가져온 모든 메서드는 프로미스로 반환함. (await 필요)
+
+## test.only, test.skip
+
+- test.only는 테스트를 실행할 때 특정 테스트만 실행하도록 함.
+- test.skip은 테스트를 실행할 때 특정 테스트를 건너뛰도록 함.
+
+## waitFor
+
+- 앞선 비동기 작업을 모두 반환할 때까지 기다리거나, 타임아웃이 발생할 때까지 기
+  다림.
