@@ -36,3 +36,11 @@ findByTestId, findByText, findByRole, findByPlaceholderText: 이러한 메서드
 
 - 앞선 비동기 작업을 모두 반환할 때까지 기다리거나, 타임아웃이 발생할 때까지 기
   다림.
+
+## userEvent.clear
+
+- 기존 요소의 값을 지움.
+
+## userEvent.type
+
+- 텍스트를 입력함.
