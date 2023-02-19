@@ -33,15 +33,16 @@ export function OrderDetailsProvider(props) {
     setOptionCounts({ scoops: {}, toppings: {} });
   }
 
-  function calculateTotal(ot) {
-    const countsArray = Object.values(optionCounts[ot]);
+  function calculateTotal(optionType) {
+    const countsArray = Object.values(optionCounts[optionType]);
     const totalCount = countsArray.reduce((total, value) => total + value, 0);
-    return totalCount * pricePerItem[ot];
+    return totalCount * pricePerItem[optionType];
   }
 
   const totals = {
     scoops: calculateTotal('scoops'),
     toppings: calculateTotal('toppings'),
+    grandTotal: calculateTotal('scoops') + calculateTotal('toppings'),
   };
 
   const value = { optionCounts, updateItemCount, resetOrder, totals };

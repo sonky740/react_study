@@ -44,3 +44,11 @@ findByTestId, findByText, findByRole, findByPlaceholderText: 이러한 메서드
 ## userEvent.type
 
 - 텍스트를 입력함.
+
+## not wrapped in act(...) 에러
+
+- Warning: An update to Options inside a test was not wrapped in act(...).
+- Warning: Can't perform a React state update on an unmounted component.
+
+둘 중 하나의 오류가 표시된다면 그 이유는 거의 "테스트가 끝날 때 컴포넌트가 변경
+되기 때문." 비동기 상태 업데이트가 완료되기 전에 테스트 함수가 종료된 것.
