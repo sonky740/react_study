@@ -5,7 +5,7 @@ export default function ExpenseForm({ onSaveExpenseData }) {
   const [userInput, setUserInput] = useState({
     enteredTitle: '',
     enteredAmount: '',
-    enteredDate: '',
+    enteredDate: '' || new Date().toISOString().slice(0, 10),
   });
 
   const submitHandler = (e) => {
@@ -13,7 +13,7 @@ export default function ExpenseForm({ onSaveExpenseData }) {
 
     const expenseData = {
       title: userInput.enteredTitle,
-      amount: userInput.enteredAmount,
+      amount: +userInput.enteredAmount,
       date: new Date(userInput.enteredDate),
     };
     onSaveExpenseData(expenseData);
