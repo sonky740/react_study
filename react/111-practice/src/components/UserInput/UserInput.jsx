@@ -10,7 +10,6 @@ const INIT_USER_INPUT = {
 
 export default function UserInput({ onCalculate }) {
   const [userInput, setUserInput] = useState(INIT_USER_INPUT);
-  console.log('a');
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
