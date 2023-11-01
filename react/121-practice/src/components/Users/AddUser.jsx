@@ -1,10 +1,13 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import Button from '../UI/Button';
 import Card from '../UI/Card';
 import ErrorModal from '../UI/ErrorModal';
 import styles from './AddUser.module.css';
 
 export default function AddUser({ onAddUser }) {
+  const nameInputRef = useRef();
+  const ageInputRef = useRef();
+
   const [enteredUserInfo, setEnteredUserInfo] = useState({
     username: '',
     age: '',
@@ -12,7 +15,8 @@ export default function AddUser({ onAddUser }) {
   const [error, setError] = useState();
 
   const addUserHandler = (e) => {
-    e.preventDefault();
+    e.preventDefault(); 
+    console.log(nameInputRef.current, ageInputRef.current);
 
     if (
       enteredUserInfo.username.trim().length === 0 ||
@@ -65,6 +69,7 @@ export default function AddUser({ onAddUser }) {
             id="username"
             onChange={userInfoChangeHandler}
             value={enteredUserInfo.username}
+            ref={nameInputRef}
           />
           <label htmlFor="age">Age</label>
           <input
@@ -72,6 +77,7 @@ export default function AddUser({ onAddUser }) {
             id="age"
             onChange={userInfoChangeHandler}
             value={enteredUserInfo.age}
+            ref={ageInputRef}
           />
           <Button type="submit">Add User</Button>
         </form>
