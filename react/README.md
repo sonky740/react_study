@@ -22,10 +22,26 @@ https://www.udemy.com/course/best-react/
 - 섹션 6 ~ 섹션 9
 
 ## 3주차 - 2023.10.31 ~ 2023.11.06
+
 - 섹션 10 ~ 섹션 11
 - vue의 Teleport === react-dom의 createPortal
 - vue의 DOM ref === react의 useRef (useRef는 current 프로퍼티로 접근 가능)
   - useState를 사용하면 제어 컴포넌트라고 부를 수 있음.
   - useRef를 사용하면 비제어 컴포넌트라고 부를 수 있음. (useState를 안 썼다면)
-  - 제어 컴포넌트는 항상 최신값을 유지하기 때문에 불필요한 렌더링이 발생할 수 있음.
-  - 이건 vue에서도 마찬가지지만, react에서는 제어 컴포넌트 전체를 리렌더링 하기 때문에 좀 더 유의해야함.
+  - 제어 컴포넌트는 항상 최신값을 유지하기 때문에 불필요한 렌더링이 발생할 수 있
+    음.
+  - 이건 vue에서도 마찬가지지만, react에서는 제어 컴포넌트 전체를 리렌더링 하기
+    때문에 좀 더 유의해야함.
+- useEffect
+  - []: vue의 onMounted
+  - [state]: vue의 watch
+  - cleanup 함수: vue의 onUnmounted, 그러나 react에서의 cleanup은 의존성 배열에
+    있는 값이 변경되기 직전에 실행되기도 함.
+- useReducer
+  - useState의 대체제로 사용 가능.
+  - 각 컴포넌트에서 쓰이는 vuex라고 생각하면 됨.
+- useImperativeHandle
+  - 부모 컴포넌트에서 자식 컴포넌트의 메서드를 호출할 수 있음.
+  - 캡슐화 위배
+  - 상향식(top-down) 데이터 흐름 방해
+  - 유지보수 어려움
