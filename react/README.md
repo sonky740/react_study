@@ -63,3 +63,30 @@ https://www.udemy.com/course/best-react/
   - useMemo: 모든 종류의 데이터를 저장.
     - 메모리를 사용하고 일정 성능을 사용함.
     - 객체, 배열같은 참조 타입의 값을 기억할 때 유용.
+
+## 5주차 2023.11.14 ~ 2023.11.20
+- 섹션 14 ~ 16
+- react LifeCycle
+  - Mounting: 컴포넌트가 DOM에 추가될 때
+    - constructor: 컴포넌트가 생성될 때
+    - getDerivedStateFromProps: 컴포넌트가 생성될 때와 업데이트될 때
+    - render: 컴포넌트의 UI를 렌더링
+    - componentDidMount: 컴포넌트가 DOM에 추가된 후 호출 (=== useEffect(..., []))
+  - Updating: 컴포넌트가 업데이트될 때
+    - getDerivedStateFromProps: 업데이트 시작 전에 호출
+    - shouldComponentUpdate: 컴포넌트가 업데이트될 때 호출
+    - render: 컴포넌트의 UI를 렌더링
+    - getSnapshotBeforeUpdate: 업데이트 직전의 상태를 포착
+    - componentDidUpdate: 업데이트 후에 호출 (=== useEffect(..., [state]))
+  - Unmounting: 컴포넌트가 DOM에서 제거될 때
+    - componentWillUnmount: 컴포넌트가 제거되기 전에 호출 (=== useEffect(return () => {...}, []))
+  - Error Handling: 컴포넌트에서 에러가 발생했을 때
+    - getDerivedStateFromError: 에러 발생 후에 호출, 에러로 인한 상태 변화를 처리
+    - componentDidCatch: 에러 정보를 캡처
+  - React 17부터는 더 이상 사용되지 않는 메서드들이 있음.
+    - componentWillMount
+    - componentWillReceiveProps
+    - componentWillUpdate
+- Error Boundary처리는 컴포넌트 트리의 어디에서든 에러를 처리할 수 있음.
+  - Error Boundary는 클래스 컴포넌트로만 사용 가능.
+  - 함수형 컴포넌트에서는 라이브러리를 사용하거나 클래스 컴포넌트로 사용.
