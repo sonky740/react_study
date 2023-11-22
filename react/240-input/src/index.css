@@ -79,6 +79,13 @@ button:active {
   border-color: #33059e;
 }
 
+button:disabled {
+  background-color: #ccc;
+  border-color: #ccc;
+  color: #797979;
+  cursor: not-allowed;
+}
+
 .form-actions {
   text-align: right;
 }
