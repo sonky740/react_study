@@ -140,3 +140,5 @@ https://www.udemy.com/course/best-react/
   - 데이터를 직접 변경할 수 없음. (불변성 유지)
   - useSelector, useDispatch를 사용하여 데이터를 가져오고, 변경함.
   - @reduxjs/toolkit은 내부적으로 immer를 사용하여 불변성을 유지하기 때문에 원본 상태를 직접 변경해도 무방함.
+  - ducks 패턴: 액션 타입, 액션 생성 함수, 리듀서를 한 파일에 작성하는 패턴.
+    - 보편적으로 ducks 패턴을 사용함. (createSlice를 사용하면 자연스럽게 ducks 패턴을 사용하게 됨.)
