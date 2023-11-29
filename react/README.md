@@ -129,3 +129,14 @@ https://www.udemy.com/course/best-react/
 
 - 섹션 17 ~ 18
 - ref로 input의 value를 제어하는건 지양.
+
+## 7주차 2023.11.28 ~ 2023.12.04
+- 섹션 19 ~ 20
+- Context API vs Redux
+  - Context는 설정이 복잡해질 수 있음. (중첩되는 Context)
+  - 데이터가 자주 변경되는 경우에는 Context의 성능 이슈가 있음.
+- Redux
+  - Redux는 단 하나의 저장소만 가질 수 있음. (Vuex와 비슷)
+  - 데이터를 직접 변경할 수 없음. (불변성 유지)
+  - useSelector, useDispatch를 사용하여 데이터를 가져오고, 변경함.
+  - @reduxjs/toolkit은 내부적으로 immer를 사용하여 불변성을 유지하기 때문에 원본 상태를 직접 변경해도 무방함.
