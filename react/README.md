@@ -131,6 +131,7 @@ https://www.udemy.com/course/best-react/
 - ref로 input의 value를 제어하는건 지양.
 
 ## 7주차 2023.11.28 ~ 2023.12.04
+
 - 섹션 19 ~ 20
 - Context API vs Redux
   - Context는 설정이 복잡해질 수 있음. (중첩되는 Context)
@@ -139,6 +140,12 @@ https://www.udemy.com/course/best-react/
   - Redux는 단 하나의 저장소만 가질 수 있음. (Vuex와 비슷)
   - 데이터를 직접 변경할 수 없음. (불변성 유지)
   - useSelector, useDispatch를 사용하여 데이터를 가져오고, 변경함.
-  - @reduxjs/toolkit은 내부적으로 immer를 사용하여 불변성을 유지하기 때문에 원본 상태를 직접 변경해도 무방함.
+  - @reduxjs/toolkit은 내부적으로 immer를 사용하여 불변성을 유지하기 때문에 원본
+    상태를 직접 변경해도 무방함.
+  - 무조건 동기식이여야 함.
+  - redux-thunk: 비동기 처리를 위한 미들웨어
+    - redux-thunk는 액션 생성 함수에서 일반 객체를 반환하는 대신에 함수를 반환하
+      도록 만들어줌.
   - ducks 패턴: 액션 타입, 액션 생성 함수, 리듀서를 한 파일에 작성하는 패턴.
-    - 보편적으로 ducks 패턴을 사용함. (createSlice를 사용하면 자연스럽게 ducks 패턴을 사용하게 됨.)
+    - 보편적으로 ducks 패턴을 사용함. (createSlice를 사용하면 자연스럽게 ducks
+      패턴을 사용하게 됨.)
