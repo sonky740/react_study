@@ -137,12 +137,14 @@ https://www.udemy.com/course/best-react/
   - Context는 설정이 복잡해질 수 있음. (중첩되는 Context)
   - 데이터가 자주 변경되는 경우에는 Context의 성능 이슈가 있음.
 - Redux
-  - Redux는 단 하나의 저장소만 가질 수 있음. (Vuex와 비슷)
-    **vs vuex**
-    - redux는 단일 상태 트리, 모든 상태 변화는 순수 함수인 리듀서를 통해 이루어짐
+  - Redux는 단 하나의 저장소만 가질 수 있음. (Vuex와 비슷) **vs vuex**
+    - redux는 단일 상태 트리, 모든 상태 변화는 순수 함수인 리듀서를 통해 이루어
+      짐
     - vuex는 단일 상태 트리, vue의 반응성 시스템을 사용하여 상태 변화 감지
-    - redux는 엄격한 단방향 데이터 흐름을 따름, 상태는 불변성을 유지해야하며, 액션을 통해서만 상태를 변경.
-    - vuex는 단반향 데이터 흐름을 따르지만, vue의 반응성 시스템 덕분에 상태변화를 더 쉽게 할 수 있음.
+    - redux는 엄격한 단방향 데이터 흐름을 따름, 상태는 불변성을 유지해야하며, 액
+      션을 통해서만 상태를 변경.
+    - vuex는 단반향 데이터 흐름을 따르지만, vue의 반응성 시스템 덕분에 상태변화
+      를 더 쉽게 할 수 있음.
   - 데이터를 직접 변경할 수 없음. (불변성 유지)
   - useSelector, useDispatch를 사용하여 데이터를 가져오고, 변경함.
   - @reduxjs/toolkit은 내부적으로 immer를 사용하여 불변성을 유지하기 때문에 원본
@@ -154,3 +156,11 @@ https://www.udemy.com/course/best-react/
   - ducks 패턴: 액션 타입, 액션 생성 함수, 리듀서를 한 파일에 작성하는 패턴.
     - 보편적으로 ducks 패턴을 사용함. (createSlice를 사용하면 자연스럽게 ducks
       패턴을 사용하게 됨.)
+
+## 8주차 2023.12.06 ~ 2023.12.11
+
+- 섹션 21
+- react-router-dom
+  - 6.4 이전 버전에서는 JSX코드를 사용하여 라우팅 설정하였음.
+    (createRoutesFromElements)
+  - index: true === 첫 페이지로 설정
