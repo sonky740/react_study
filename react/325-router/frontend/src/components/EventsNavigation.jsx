@@ -1,11 +1,11 @@
 import { NavLink } from 'react-router-dom';
-import classes from './EventsNavigation.module.css';
+import styles from './EventsNavigation.module.css';
 
 function EventsNavigation() {
   return (
-    <header className={classes.header}>
+    <header className={styles.header}>
       <nav>
-        <ul className={classes.list}>
+        <ul className={styles.list}>
           <li>
             <NavLink to="/events">All Events</NavLink>
           </li>

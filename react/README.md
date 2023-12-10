@@ -161,6 +161,24 @@ https://www.udemy.com/course/best-react/
 
 - 섹션 21
 - react-router-dom
+  - method: Form, json, useNavigate, useNavigation, useActionData,
+    useLoaderData, useRouteLoaderData, useFetcher, Await, ...
+    - Form: `<form>` 태그의 확장, useActionData와 함께 사용.
+    - useNavigate: 기존의 useHistory와 비슷, 라우터 이동
+    - useNavigation: 현재 상태 추적
+    - useActionData: `<Form>`을 통해 서버로부터 받은 응답 데이터를 가져옴.
+    - useLoaderData: 라우트 loader에서 로드된 데이터에 접근할 수 있게 해줌. 라우
+      터가 로드되기 전에 필요한 데이터를 미리 로딩하는 데 사용
+    - useFetcher: 비동기 요청을 관리하는 데 사용. 서버에 데이터를 전송하고 응답
+      을 처리 할 수 있음.
+    - Await: React 18의 `<Suspense>`와 함께 사용되며, 비동기 로딩 중인 데이터에
+      대한 UI를 관리하는 데 사용.
   - 6.4 이전 버전에서는 JSX코드를 사용하여 라우팅 설정하였음.
     (createRoutesFromElements)
   - index: true === 첫 페이지로 설정
+  - loader: 클라이언트에서 특정 라우트로 이동하기 전에 필요한 데이터를 미리 가져
+    옴. 마치 SSR과 유사한 기능. vue의 beforeEnter, beforeRouteEnter와 비슷.
+    useLoaderData로 데이터를 가져올 수 있음. 만약 상위 라우트에서 데이터를 가져
+    온다면 router에 id를 추가하고 useRouteLoaderData로 가져올 수 있음.
+  - action: 해당 페이지에서 실행할 액션을 설정
+  -
