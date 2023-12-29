@@ -181,4 +181,12 @@ https://www.udemy.com/course/best-react/
     useLoaderData로 데이터를 가져올 수 있음. 만약 상위 라우트에서 데이터를 가져
     온다면 router에 id를 추가하고 useRouteLoaderData로 가져올 수 있음.
   - action: 해당 페이지에서 실행할 액션을 설정
-  -
+
+## 9주차 2023.12.12 ~ 2024.01.01
+
+- 업무로 인해 스터디 일정 조정.
+- 섹션 22 ~ 24
+- 지연 로딩
+  - router의 loader에 import를 사용하여 지연 로딩 가능.
+  - lazy, Suspense를 사용하여 지연 로딩 가능.
+  - Vue의 defineAsyncComponent와 비슷.
