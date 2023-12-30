@@ -190,3 +190,24 @@ https://www.udemy.com/course/best-react/
   - router의 loader에 import를 사용하여 지연 로딩 가능.
   - lazy, Suspense를 사용하여 지연 로딩 가능.
   - Vue의 defineAsyncComponent와 비슷.
+- Tanstack(react query)
+  - HTTP 요청을 전송하고 프론트엔드 사용자 인터페이스를 백엔드 데이터와 동기화된
+    상태로 유지하는 라이브러리.
+  - 데이터 캐싱, 데이터 동기화, 오류 처리, 등에 대한 강점이 있음.
+  - GET은 useQuery, POST는 useMutation을 사용.
+  - staleTime: 데이터가 적힌 시간동안 만료되기 전까지 캐시된 데이터를 사용. (기
+    본값: 0)
+  - gcTime: 데이터와 캐시를 얼마나 보관할지. (기본값: 5분)
+  - isLoading vs isPending
+    - isLoading: 쿼리가 비활성화 됐다고해서 True가 되지 않음.
+    - isPending: 쿼리가 비활성화 되어도 True가 됨.
+  - 낙관적 업데이트: 서버로부터 응답을 받기 전에 UI를 업데이트하는 것.
+    - useMutation의 onMutate를 사용하여 구현.
+      - cancelQueries: 명시한 키에 대해 나가는 쿼리가 있는 경우 해당 쿼리를 취소
+      - getQueryData: 현재 저장된 쿼리 데이터를 가져옴.
+      - setQueryData: 쿼리 데이터를 업데이트하고 캐시를 업데이트함.
+    - 실패 시 rollback을 위해 useQuery의 onError를 사용하여 구현.
+    - onSettled: mutation이 완료될 때 마다 호출됨.
+  - router와 연계
+    - fetchQuery: useQuery와 유사하게 동작하며, 라우터의 loader에서 사용할 수있
+      음.
