@@ -211,3 +211,34 @@ https://www.udemy.com/course/best-react/
   - router와 연계
     - fetchQuery: useQuery와 유사하게 동작하며, 라우터의 loader에서 사용할 수있
       음.
+
+## 10주차 2024.01.16 ~ 2024.01.22
+
+- 섹션 26 ~ 27
+- framer-motion
+  - 예전 GSAP를 사용했을 때보다 훨씬 편리하게 애니메이션을 구현할 수 있음.
+  - initial: 초기 상태를 지정하여 변수 없이 애니메이션을 시작할 수 있음.
+  - transition
+    - type: spring (바운스), tween (일반)
+    - stiffness: type이 spring일 때만 사용 가능. 강성. (기본값: 100)
+  - AnimatePresence
+    - DOM이 즉시 제거되는 걸 막고 exit 애니메이션을 실행할 수 있음.
+    - 2개 이상 컴포넌트가 존재할 때는 key를 사용하여 구분해야함.
+    - mode
+      - sync(default): 이 컴포넌트 안에 있는 모든 애니메이션을 동시에 실행
+      - wait: 이 컴포넌트 안에 있는 모든 애니메이션을 순차적으로 기다렸다가 실행
+  - while~~: 사용자 인터랙션에 따라 애니메이션을 적용할 수 있음.
+  - variants
+    - 애니메이션을 재사용할 수 있게 변수로 지정할 수 있음.
+    - 컴포넌트 안에 애니메이션을 트리거하는 데 쓰일 수도 있음.
+    - 단, 중첩된 컴포넌트에서는 variants에서 선언한 애니메이션 변수를 사용할 수
+      없음.
+  - staggerChildren: 자식 컴포넌트의 애니메이션을 시작하는 시점의 차이를 줄 수있
+    음.
+  - useAnimation: 명령형 애니메이션을 사용할 수 있음.
+  - layout: 레이아웃 변화에 따른 애니메이션을 적용할 수 있음.
+  - layoutId: 페이지의 다른 위치에 있는 같은 layouId를 지닌 다른 요소가 렌더링
+    되는 때를 자동을 감지해서 애니메이션을 적용 (ex: tab의 indicator)
+  - key를 활용해서 데이터가 변경될 때 마다 애니메이션을 적용할 수 있음.
+  - useScroll: 스크롤 위치에 따라 애니메이션을 적용할 수 있음.
+  - useTransform: 애니메이션에 사용할 수 있는 값으로 전환.
