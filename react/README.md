@@ -237,8 +237,20 @@ https://www.udemy.com/course/best-react/
     음.
   - useAnimation: 명령형 애니메이션을 사용할 수 있음.
   - layout: 레이아웃 변화에 따른 애니메이션을 적용할 수 있음.
-  - layoutId: 페이지의 다른 위치에 있는 같은 layouId를 지닌 다른 요소가 렌더링
-    되는 때를 자동을 감지해서 애니메이션을 적용 (ex: tab의 indicator)
+  - layoutId: 페이지의 다른 위치에 있는 같은 layouId를 지닌 다른 요소가 렌더링되
+    는 때를 자동을 감지해서 애니메이션을 적용 (ex: tab의 indicator)
   - key를 활용해서 데이터가 변경될 때 마다 애니메이션을 적용할 수 있음.
   - useScroll: 스크롤 위치에 따라 애니메이션을 적용할 수 있음.
   - useTransform: 애니메이션에 사용할 수 있는 값으로 전환.
+- testing-library/react
+  - describe: 테스트를 그룹화
+  - it(test): 하나의 테스트를 정의
+  - render: 컴포넌트를 렌더링
+  - screen: DOM 요소에 접근하고 검증하는 데 사용
+  - getBy~~: 특정 요소를 찾음. 요소가 없으면 에러를 발생
+  - queryBy~~: 특정 요소를 찾음. 요소가 없으면 null을 반환
+  - findBy~~: 비동기적으로 특정 요소를 찾음. 프로미스를 반환
+  - expect: 테스트를 검증
+  - jest.fn: 함수를 목업
+    - jest.fn().mockResolvedValue: 비동기 함수를 목업
+    - 목업을 활용하여 불필요한 API 호출을 방지할 수 있음.
