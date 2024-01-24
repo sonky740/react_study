@@ -254,3 +254,11 @@ https://www.udemy.com/course/best-react/
   - jest.fn: 함수를 목업
     - jest.fn().mockResolvedValue: 비동기 함수를 목업
     - 목업을 활용하여 불필요한 API 호출을 방지할 수 있음.
+
+## 11주차 2024.01.23 ~ 2024.01.29
+  - 섹션 28
+  - React.FC 지양?
+    - 모든 컴포넌트에 children이 필요하지 않을 수 있음. 
+      => (최근에는 더 이상 props 타입에 암묵적으로 포함되지 않고 명시적으로 선언해야 한다고 함.)
+    - React 18 이전 버전에서는 React.ReactElement를 반환하여, 숫자나 문자열을 반환하면 에러 발생
+      => Typescript 5.1, React 18 이후 버전에서는 React.ReactNode를 반환하여, 숫자나 문자열을 반환해도 에러 발생하지 않음.
