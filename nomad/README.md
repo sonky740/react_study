@@ -4,7 +4,7 @@ https://nomadcoders.co/react-masterclass
 
 - EXEM FE3팀 Study를 위해 들으며 정리.
 
-## 1주차 - 2024.02.xx ~ 2024.02.xx
+## 1주차 - 2024.02.13 ~ 2024.02.26
 
 ### Styled Components
 
@@ -14,8 +14,8 @@ https://nomadcoders.co/react-masterclass
 - animation을 위해 `keyframes` 사용 가능
 - 자식 컴포넌트의 스타일을 변경할 때 `${}` 사용
 - `ThemeProvider`를 사용하여 테마를 설정할 수 있음
-- `withComponent`를 사용하여 컴포넌트를 확장할 수 있음 (v4 `as` 도입 이후 잘안쓰
-  게 됨)
+- `withComponent`를 사용하여 컴포넌트를 확장할 수 있음 (v4부터 `as` 도입 이후 잘
+  안쓰게 됨)
 - `createGlobalStyle`을 사용하여 전역 스타일을 설정할 수 있음
 - 컴포넌트 내에서 theme 값을 가져오려면 v5에 추가된 styled-components의
   `useTheme`를 사용할 수 있음 (그 전엔 react의 `useContext` + styled-components
@@ -40,5 +40,41 @@ https://nomadcoders.co/react-masterclass
 - `useParams`: url의 파라미터를 가져올 수 있음 (v5에도 있음)
 - `useOutletContext`: Outlet의 context를 가져올 수 있음 (v5에 없음)
 - `useLoaderData`: 라우트 loader에서 로드된 데이터에 접근할 수 있게 해줌. 라우터
-  가 로드되기 전에 필요한 데이터를 미리 로딩하는 데 사용
-- `Form`: `<form>` 태그의 확장, useActionData와 함께 사용.
+  가 로드되기 전에 필요한 데이터를 미리 로딩하는 데 사용 (v5에 없음)
+- `Form`: `<form>` 태그의 확장, `useActionData`와 함께 사용. (v5에 없음)
+
+## 2주차 - 2024.02.27 ~ 2024.03.05
+
+### Crpyto Tracker
+
+- `createGlobalStyle`을 사용하여 전역 스타일을 설정
+- `Link` to를 object로 설정하여 파라미터를 전달할 수 있음 (`useLocation`을 사용
+  하여 접근 가능)
+  - pathname: 이동할 경로
+  - search: 쿼리스트링
+  - state: 상태값
+  - hash: 해시값
+  - key: 라우트의 고유 식별자
+  - V6에서는 달라짐
+    - `to`에 `pathname`, `search`, `hash`만 사용 가능
+    - `state`: attribute로 직접 전달
+    - `reloadDocument`: `Link` 클릭 시 페이지를 새로고침할지 여부
+    - `replace`: 브라우저의 히스토리 스택에 새 항목을 추가하지 않고 현재 항목을
+      대체할지 여부
+    - `preventScrollReset`: 페이지 이동 시에 스크롤을 유지할지 여부
+    - `relative`: 상대 경로 여부
+
+**참고**
+
+- `createGlobalStyle` 안에서 `@import`를 사용할 경우, `react-helmet`을 사용하거
+  나 index.html의 `head`에 직접 추가 해야함.
+- `react-helmet`을 사용할 경우 index.tsx에 StrictMode를 사용하면 안됨.
+  - StrictMode를 없애거나, `react-helmet-async`를 사용하여 해결 가능.
+  - `react-helmet`은 SSR을 지원하지 않음. `react-helmet-async`를사용하면 SSR을지
+    원함.
+
+**팁**
+
+- API에서 타입을 가져올 때, `Object.values()`를 사용하여 key를 가져오고,  
+  `Object.values().map(v => typeof v).join()`을 사용하여 value의 타입을 가져오는
+  편리한 방법이 있음.
