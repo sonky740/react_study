@@ -1,6 +1,16 @@
-import { useEffect, useState } from 'react';
-import { useParams, useLocation } from 'react-router';
+import {
+  Switch,
+  Route,
+  useLocation,
+  useParams,
+  useRouteMatch,
+  Link,
+} from 'react-router-dom';
 import styled from 'styled-components';
+import Chart from './Chart';
+import Price from './Price';
+import { useQuery } from 'react-query';
+import { fetchCoinInfo, fetchCoinTickers } from '../api';
 
 interface RouteParams {
   coinId: string;
@@ -66,28 +76,23 @@ interface PriceInfoData {
 }
 
 function Coin() {
-  const [loading, setLoading] = useState(true);
-  const [info, setInfo] = useState<InfoData>();
-  const [priceInfo, setPriceInfo] = useState<PriceInfoData>();
+  const priceMatch = useRouteMatch('/:coinId/price');
+  const chartMatch = useRouteMatch('/:coinId/chart');
   const { coinId } = useParams<RouteParams>();
   const { state } = useLocation<RouteState>();
 
-  useEffect(() => {
-    (async () => {
-      const coinsResponse = await fetch(
-        `https://api.coinpaprika.com/v1/coins/${coinId}`
-      );
-      const infoData = await coinsResponse.json();
-      const priceResponse = await fetch(
-        `https://api.coinpaprika.com/v1/tickers/${coinId}`
-      );
-      const priceData = await priceResponse.json();
-      setInfo(infoData);
-      setPriceInfo(priceData);
-      console.log(priceInfo);
-      setLoading(false);
-    })();
-  }, []);
+  const { isLoading: infoLoading, data: infoData } = useQuery<InfoData>({
+    queryKey: ['info', coinId],
+    queryFn: () => fetchCoinInfo(coinId),
+  });
+
+  const { isLoading: tickersLoading, data: tickersData } =
+    useQuery<PriceInfoData>({
+      queryKey: ['tickers', coinId],
+      queryFn: () => fetchCoinTickers(coinId),
+    });
+
+  const loading = infoLoading || tickersLoading;
 
   return (
     <Container>
@@ -95,7 +100,53 @@ function Coin() {
         <Title>{state?.name || 'Loading'}</Title>
       </Header>
       {loading && <Loader>Loading...</Loader>}
-      {!loading && null}
+      {!loading && (
+        <>
+          <Overview>
+            <OverviewItem>
+              <span>Rank:</span>
+              <span>{infoData?.rank}</span>
+            </OverviewItem>
+            <OverviewItem>
+              <span>Symbol:</span>
+              <span>${infoData?.symbol}</span>
+            </OverviewItem>
+            <OverviewItem>
+              <span>Open Source:</span>
+              <span>{infoData?.open_source ? 'Yes' : 'No'}</span>
+            </OverviewItem>
+          </Overview>
+          <Description>{infoData?.description}</Description>
+          <Overview>
+            <OverviewItem>
+              <span>Total Suply:</span>
+              <span>{tickersData?.total_supply}</span>
+            </OverviewItem>
+            <OverviewItem>
+              <span>Max Supply:</span>
+              <span>{tickersData?.max_supply}</span>
+            </OverviewItem>
+          </Overview>
+
+          <Tabs>
+            <Tab isActive={chartMatch !== null}>
+              <Link to={`/${coinId}/chart`}>Chart</Link>
+            </Tab>
+            <Tab isActive={priceMatch !== null}>
+              <Link to={`/${coinId}/price`}>Price</Link>
+            </Tab>
+          </Tabs>
+
+          <Switch>
+            <Route path="/:coinId/price">
+              <Price />
+            </Route>
+            <Route path="/:coinId/chart">
+              <Chart />
+            </Route>
+          </Switch>
+        </>
+      )}
     </Container>
   );
 }
@@ -112,6 +163,52 @@ const Header = styled.header`
   align-items: center;
   justify-content: center;
   height: 10vh;
+`;
+
+const Overview = styled.div`
+  display: flex;
+  justify-content: space-between;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 10px 20px;
+  border-radius: 10px;
+`;
+
+const OverviewItem = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  span:first-child {
+    font-size: 10px;
+    font-weight: 400;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+  }
+`;
+
+const Description = styled.p`
+  margin: 20px 0px;
+`;
+
+const Tabs = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin: 25px 0px;
+  gap: 10px;
+`;
+
+const Tab = styled.span<{ isActive: boolean }>`
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 400;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 7px 0px;
+  border-radius: 10px;
+  color: ${({ isActive, theme }) =>
+    isActive ? theme.accentColor : theme.textColor};
+  a {
+    display: block;
+  }
 `;
 
 const Title = styled.h1`
