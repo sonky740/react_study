@@ -45,7 +45,7 @@ https://nomadcoders.co/react-masterclass
 
 ## 2주차 - 2024.02.27 ~ 2024.03.05
 
-### Crpyto Tracker
+### Crpyto Tracker (React Router Dom, React Query)
 
 - `createGlobalStyle`을 사용하여 전역 스타일을 설정
 - `Link` to를 object로 설정하여 파라미터를 전달할 수 있음 (`useLocation`을 사용
@@ -72,6 +72,7 @@ https://nomadcoders.co/react-masterclass
   - staleTime: 데이터가 적힌 시간동안 만료되기 전까지 캐시된 데이터를 사용. (기
     본값: 0)
   - gcTime: 데이터와 캐시를 얼마나 보관할지. (기본값: 5분) (v5전에는 cacheTime)
+  - refetchInterval: 데이터를 반복적으로 가져올 시간 간격 설정 (ms)
   - isLoading vs isPending
     - isLoading: 쿼리가 비활성화 됐다고해서 True가 되지 않음.
     - isPending: 쿼리가 비활성화 되어도 True가 됨.

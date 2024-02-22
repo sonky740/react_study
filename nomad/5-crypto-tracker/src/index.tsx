@@ -14,6 +14,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <QueryClientProvider client={queryClient}>
     <Helmet>
+      <title>Crypto Tracker</title>
       <link
         rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap"
