@@ -66,6 +66,15 @@ https://nomadcoders.co/react-masterclass
 - react-query 사용을 위해서는 `QueryClientProvider`를 사용하여 `queryClient`를전
   달해야함
   - 사용은 `useQuery(queryKey, queryFn)`를 사용하여 데이터를 가져올 수 있음
+  - 유연성과 확장성을 위해서 아래와 같은 방식 권장
+    ```ts
+    useQuery<Type>({
+      queryKey: ['key', '...'],
+      queryFn: async () => {
+        ...
+      },
+    })
+    ```
   - `ReactQueryDevtools`를 사용하여 쿼리를 확인할 수 있음
   - 데이터를 캐시해두는 것이 가능하여 다른 페이지 갔다가 돌아와도 데이터를 다시
     불러오지 않음 (cacheTime에 따라 다름)
