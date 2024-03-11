@@ -110,3 +110,16 @@ https://nomadcoders.co/react-masterclass
 - API에서 타입을 가져올 때, `Object.values()`를 사용하여 key를 가져오고,  
   `Object.values().map(v => typeof v).join()`을 사용하여 value의 타입을 가져오는
   편리한 방법이 있음.
+
+## 3주차 - 2024.03.19 ~ 2024.03.25
+
+### State Management
+
+- Recoil
+  - Root에 `RecoilRoot`를 사용하여 전역 상태를 관리할 수 있음
+  - `atom`을 사용하여 상태를 생성할 수 있음
+  - `selector`를 사용하여 상태를 가져올 수 있음
+  - `useRecoilState`를 사용하여 상태를 가져오고 변경할 수 있음
+  - `useRecoilValue`를 사용하여 상태를 가져올 수 있음
+  - `useSetRecoilState`를 사용하여 상태를 변경할 수 있음
+  - `useResetRecoilState`를 사용하여 상태를 초기화할 수 있음
