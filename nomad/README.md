@@ -118,8 +118,56 @@ https://nomadcoders.co/react-masterclass
 - Recoil
   - Root에 `RecoilRoot`를 사용하여 전역 상태를 관리할 수 있음
   - `atom`을 사용하여 상태를 생성할 수 있음
-  - `selector`를 사용하여 상태를 가져올 수 있음
+  - `selector`를 사용하여 상태를 가져올 수 있음 === vue의 computed와 비슷
   - `useRecoilState`를 사용하여 상태를 가져오고 변경할 수 있음
   - `useRecoilValue`를 사용하여 상태를 가져올 수 있음
   - `useSetRecoilState`를 사용하여 상태를 변경할 수 있음
   - `useResetRecoilState`를 사용하여 상태를 초기화할 수 있음
+- react-hook-form
+  - `useForm`을 사용하여 폼을 생성할 수 있음
+  - `register`: 입력 컴포넌트에 등록시켜, 해당 필드의 값 변경, 유효성 검사, 폼제
+    출 등을 관리 (name, onChange, onBlur, ref)
+    ```typescript
+    const { register } = useForm();
+    <input
+      {...register('email', {
+        required: 'This input is required',
+        maxLength: { value: 10, message: 'Max length is 10' },
+        pattern: { value: /^\S+@\S+$/i, message: 'Invalid email' },
+        validate: {
+          noKy: (value) => value.includes('ky') || 'ky is required',
+          noNico: (value) => !value.includes('nico') || 'nico is not allowed',
+        },
+      })}
+    />;
+    ```
+  - `watch`: 입력 컴포넌트의 값을 감시하여, 해당 필드의 값 변경을 관리
+    ```typescript
+    const { watch } = useForm();
+    const email = watch('email');
+    ```
+  - `handleSubmit`: 폼을 제출할 때 사용, data 인자로 폼의 데이터를 가져올 수 있
+    음
+    ```typescript
+    const { handleSubmit } = useForm();
+    const onSubmit = (data: any) => console.log(data);
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <input {...register('email')} />
+      <input type="submit" />
+    </form>;
+    ```
+  - `formState`: 폼의 상태를 가져올 수 있음
+    ```typescript
+    const { formState } = useForm();
+    console.log(formState.isDirty);
+    ```
+  - `setError`: 폼의 에러를 설정할 수 있음
+    ```typescript
+    const { setError } = useForm();
+    setError('email', { message: 'Invalid email' }, { shouldFocus: true });
+    ```
+  - `clearErrors`: 폼의 에러를 초기화할 수 있음
+    ```typescript
+    const { clearErrors } = useForm();
+    clearErrors('email');
+    ```
