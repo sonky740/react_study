@@ -118,7 +118,22 @@ https://nomadcoders.co/react-masterclass
 - Recoil
   - Root에 `RecoilRoot`를 사용하여 전역 상태를 관리할 수 있음
   - `atom`을 사용하여 상태를 생성할 수 있음
+    ```typescript
+    export const textState = atom({
+      key: 'textState',
+      default: '',
+    });
+    ```
   - `selector`를 사용하여 상태를 가져올 수 있음 === vue의 computed와 비슷
+    ```typescript
+    export const charCountState = selector({
+      key: 'charCountState',
+      get: ({ get }) => {
+        const text = get(textState);
+        return text.length;
+      },
+    });
+    ```
   - `useRecoilState`를 사용하여 상태를 가져오고 변경할 수 있음
   - `useRecoilValue`를 사용하여 상태를 가져올 수 있음
   - `useSetRecoilState`를 사용하여 상태를 변경할 수 있음
@@ -159,7 +174,7 @@ https://nomadcoders.co/react-masterclass
   - `formState`: 폼의 상태를 가져올 수 있음
     ```typescript
     const { formState } = useForm();
-    console.log(formState.isDirty);
+    console.log(formState.isDirty, formState.errors, formState.isValid);
     ```
   - `setError`: 폼의 에러를 설정할 수 있음
     ```typescript
