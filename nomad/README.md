@@ -116,6 +116,7 @@ https://nomadcoders.co/react-masterclass
 ### State Management
 
 - Recoil
+
   - Root에 `RecoilRoot`를 사용하여 전역 상태를 관리할 수 있음
   - `atom`을 사용하여 상태를 생성할 수 있음
     ```typescript
@@ -125,6 +126,7 @@ https://nomadcoders.co/react-masterclass
     });
     ```
   - `selector`를 사용하여 상태를 가져올 수 있음 === vue의 computed와 비슷
+
     ```typescript
     // 4주차에 나옴 (7 Trello Clone)
     export const hoursSelector = selector({
@@ -140,10 +142,12 @@ https://nomadcoders.co/react-masterclass
 
     const [hours, setHours] = useRecoilState(hoursSelector);
     ```
+
   - `useRecoilState`를 사용하여 상태를 가져오고 변경할 수 있음
   - `useRecoilValue`를 사용하여 상태를 가져올 수 있음
   - `useSetRecoilState`를 사용하여 상태를 변경할 수 있음
   - `useResetRecoilState`를 사용하여 상태를 초기화할 수 있음
+
 - react-hook-form
   - `useForm`을 사용하여 폼을 생성할 수 있음
   - `register`: 입력 컴포넌트에 등록시켜, 해당 필드의 값 변경, 유효성 검사, 폼제
@@ -196,3 +200,30 @@ https://nomadcoders.co/react-masterclass
 ## 4주차 - 2024.03.26 ~ 2024.04.01
 
 ### Trello Clone
+
+- react-beautiful-dnd
+  - 업데이트 된지 2년... dnd-kit/core 추천
+  - `DragDropContext`를 사용하여 드래그 앤 드롭을 설정할 수 있음
+  - `Drappable`을 사용하여 드래그 가능한 영역을 설정할 수 있음
+    - children은 함수여야함.
+    - `innerRef`로 ref 지정
+    - `droppableProps`로 드롭 가능한 영역의 props 지정
+    - `placeholder` 드래그 중에 영역의 크기가 변하지 않도록 설정
+  - `Draggable`을 사용하여 드래그 가능한 아이템을 설정할 수 있음
+    - children은 함수여야함.
+    - `draggableProps`로 드래그 가능한 아이템의 props 지정
+    - `dragHandleProps`로 어느 부분을 드래그할지 지정
+- Reredering
+  - state가 변경될 때마다 컴포넌트가 리렌더링 되는 것을 방지하기 위해
+    `React.memo`를 사용하여 컴포넌트를 래핑할 수 있음
+    ```typescript
+    function DragabbleCard({ toDo, index }: Props) {
+      ...
+    });
+    const Memorized = memo(DragabbleCard);
+    export default Memorized;
+    ```
+    Fast Refresh 관련 경고: `React.memo`를 사용하여 컴포넌트를 래핑할 때, 컴포넌
+    트가 익명 함수로 내보내질 경우에 Fast Refresh가 제대로 동작하지 않을 수 있음
+    . 따라서, `memo`로 감싸기 전에 컴포넌트를 변수에 담아서 내보내는 것을 권장함
+    .
