@@ -119,20 +119,26 @@ https://nomadcoders.co/react-masterclass
   - Root에 `RecoilRoot`를 사용하여 전역 상태를 관리할 수 있음
   - `atom`을 사용하여 상태를 생성할 수 있음
     ```typescript
-    export const textState = atom({
-      key: 'textState',
-      default: '',
+    export const minutesState = atom({
+      key: 'minutesState',
+      default: 0,
     });
     ```
   - `selector`를 사용하여 상태를 가져올 수 있음 === vue의 computed와 비슷
     ```typescript
-    export const charCountState = selector({
-      key: 'charCountState',
+    // 4주차에 나옴 (7 Trello Clone)
+    export const hoursSelector = selector({
+      key: 'hours',
       get: ({ get }) => {
-        const text = get(textState);
-        return text.length;
+        const minutes = get(minutesState);
+        return Math.floor(minutes / 60);
+      },
+      set: ({ set }, newValue) => {
+        set(minutesState, +newValue * 60);
       },
     });
+
+    const [hours, setHours] = useRecoilState(hoursSelector);
     ```
   - `useRecoilState`를 사용하여 상태를 가져오고 변경할 수 있음
   - `useRecoilValue`를 사용하여 상태를 가져올 수 있음
@@ -186,3 +192,7 @@ https://nomadcoders.co/react-masterclass
     const { clearErrors } = useForm();
     clearErrors('email');
     ```
+
+## 4주차 - 2024.03.26 ~ 2024.04.01
+
+### Trello Clone
