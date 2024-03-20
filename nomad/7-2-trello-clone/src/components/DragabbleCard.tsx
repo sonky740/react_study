@@ -3,17 +3,29 @@ import { Draggable } from 'react-beautiful-dnd';
 import styled from 'styled-components';
 
 interface Props {
-  toDo: string;
+  toDoId: number;
+  toDoText: string;
   index: number;
 }
 
-function DragabbleCard({ toDo, index }: Props) {
+interface CardProps {
+  $isDragging: boolean;
+}
+
+function DragabbleCard({ toDoId, toDoText, index }: Props) {
   return (
-    <Draggable draggableId={toDo} index={index}>
-      {({ innerRef: dragInnerRef, dragHandleProps, draggableProps }) => (
-        <Card ref={dragInnerRef} {...dragHandleProps} {...draggableProps}>
-          <span>😊</span>
-          {toDo}
+    <Draggable draggableId={`${toDoId}`} index={index}>
+      {(
+        { innerRef: dragInnerRef, dragHandleProps, draggableProps },
+        { isDragging }
+      ) => (
+        <Card
+          $isDragging={isDragging}
+          ref={dragInnerRef}
+          {...dragHandleProps}
+          {...draggableProps}
+        >
+          {toDoText}
         </Card>
       )}
     </Draggable>
@@ -23,9 +35,12 @@ function DragabbleCard({ toDo, index }: Props) {
 const Memorized = memo(DragabbleCard);
 export default Memorized;
 
-const Card = styled.div`
+const Card = styled.div<CardProps>`
   padding: 10px;
-  background-color: ${({ theme }) => theme.cardBgColor};
+  background-color: ${({ $isDragging, theme }) =>
+    $isDragging ? '#74b9ff' : theme.cardBgColor};
+  box-shadow: ${({ $isDragging }) =>
+    $isDragging && '0 2px 5px 0 rgba(0, 0, 0, 0.2)'};
   border-radius: 8px;
 
   & + & {

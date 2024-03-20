@@ -206,13 +206,21 @@ https://nomadcoders.co/react-masterclass
   - `DragDropContext`를 사용하여 드래그 앤 드롭을 설정할 수 있음
   - `Drappable`을 사용하여 드래그 가능한 영역을 설정할 수 있음
     - children은 함수여야함.
-    - `innerRef`로 ref 지정
-    - `droppableProps`로 드롭 가능한 영역의 props 지정
-    - `placeholder` 드래그 중에 영역의 크기가 변하지 않도록 설정
+    - `provided`
+      - `innerRef`로 ref 지정
+      - `droppableProps`로 드롭 가능한 영역의 props 지정
+      - `placeholder` 드래그 중에 영역의 크기가 변하지 않도록 설정
+    - `snapshot`
+      - `isDraggingOver`로 드래그 중인지 여부 확인
+      - `draggingFromThisWith`로 현재 영역에서 드래그 중인지 여부, id 확인
   - `Draggable`을 사용하여 드래그 가능한 아이템을 설정할 수 있음
     - children은 함수여야함.
-    - `draggableProps`로 드래그 가능한 아이템의 props 지정
-    - `dragHandleProps`로 어느 부분을 드래그할지 지정
+    - `provided`
+      - `innerRef`로 ref 지정
+      - `draggableProps`로 드래그 가능한 아이템의 props 지정
+      - `dragHandleProps`로 어느 부분을 드래그할지 지정
+    - `snapshot`
+      - `isDragging`로 드래그 중인지 여부 확인
 - Reredering
   - state가 변경될 때마다 컴포넌트가 리렌더링 되는 것을 방지하기 위해
     `React.memo`를 사용하여 컴포넌트를 래핑할 수 있음
@@ -227,3 +235,10 @@ https://nomadcoders.co/react-masterclass
     트가 익명 함수로 내보내질 경우에 Fast Refresh가 제대로 동작하지 않을 수 있음
     . 따라서, `memo`로 감싸기 전에 컴포넌트를 변수에 담아서 내보내는 것을 권장함
     .
+- styled-components에서만 사용할 attribute를 설정할 때 뜨는 에러는 https://styled-components.com/docs/basics#passed-props 참고
+  - $를 붙여서 사용하면 됨
+- Challenge
+  - local storage 활용
+  - task 삭제 (쓰레기통)
+  - 보드 순서 변경
+  - 보드 생성
