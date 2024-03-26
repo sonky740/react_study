@@ -235,10 +235,77 @@ https://nomadcoders.co/react-masterclass
     트가 익명 함수로 내보내질 경우에 Fast Refresh가 제대로 동작하지 않을 수 있음
     . 따라서, `memo`로 감싸기 전에 컴포넌트를 변수에 담아서 내보내는 것을 권장함
     .
-- styled-components에서만 사용할 attribute를 설정할 때 뜨는 에러는 https://styled-components.com/docs/basics#passed-props 참고
+- styled-components에서만 사용할 attribute를 설정할 때 뜨는 에러는
+  https://styled-components.com/docs/basics#passed-props 참고
   - $를 붙여서 사용하면 됨
 - Challenge
   - local storage 활용
   - task 삭제 (쓰레기통)
   - 보드 순서 변경
   - 보드 생성
+
+## 5주차 - 2024.04.02 ~ 2024.04.08
+
+- Framer Motion
+  - html 태그에 `motion` 접두사를 사용하여 애니메이션을 적용할 수 있음.
+  - styled(motion.div)를 사용하여 styled-components와 함께 사용할 수 있음.
+  - 메소드
+    - `initial`: 초기 상태
+    - `animate`: 애니메이션 상태
+    - `exit`: 애니메이션 종료 상태
+    - `whileHover`: hover 시 애니메이션
+    - `whileTap`: tap 시 애니메이션
+    - `transition`: 애니메이션 지속 시간, 지연 시간, 이징 함수를 설정할 수 있음.
+      - `type`: `tween`, `spring`, `inertia`, `just`, `keyframes`
+      - `duration`: 지속 시간 (s)
+      - `delay`: 지연 시간 (s)
+      - `ease`: 이징 함수
+      - `stiffness`: spring 애니메이션의 강도
+      - `damping`: spring 애니메이션의 진동
+      - `mass`: inertia 애니메이션의 질량
+      - `velocity`: inertia 애니메이션의 속도
+      - `bounce`: inertia 애니메이션의 반동
+      - `delayChildren`: 자식 요소의 애니메이션 지연 시간
+      - `staggerChildren`: 자식 요소의 애니메이션 지연 시간 간격
+      - props로 설정하여 각각의 스타일 프로퍼티에 애니메이션을 적용할 수 있음.
+        ```tsx
+        <motion.path
+          transition={{
+            default: { duration: 5 },
+            fill: { duration: 2, delay: 5 }, // fill만 5초 후에 애니메이션
+          }}
+        />
+        ```
+    - `variants`를 사용하여 애니메이션 상태를 객체로 설정할 수 있음.
+      ```tsx
+      const variants = {
+        start: { scale: 0 },
+        end: {
+          scale: 1,
+          rotateZ: 360,
+          transition: { type: 'spring', delay: 0.5 },
+        },
+      };
+      <Box variants={variants} initial={start} animate={end} />;
+      ```
+    - `drag`: boolean | 'x' | 'y'
+      - `dragConstraints`: 드래그 제한 영역 (좌표를 넣을수도 있고, ref를 넣을 수
+        도 있음)
+      - `dragElastic`: 드래그 탄성
+      - `dragMomentum`: 드래그 관성
+      - `dragPropagation`: 드래그 전파
+      - `dragTransition`: 드래그 애니메이션
+      - `dragControls`: 드래그 컨트롤러
+      - `dragListener`: 드래그 리스너
+      - `dragSnapToOrigin`: 드래그 원점으로 스냅
+    - `useMotionValue`: 애니메이션 수치를 추적할 수 있음
+      - motionValue가 바뀌어도 컴포넌트가 리렌더링 되지 않음
+      - `useMotionValueEvent`: motionValue를 추적하기 위한 이벤트
+      - `set`: motionValue를 설정
+    - `useTransform`: motionValue의 값에 따라서 다른 값을 반환할 수 있음
+      ```tsx
+      const x = useMotionValue(0);
+      const scale = useTransform(x, [-800, 0, 800], [0.1, 1, 0.1]);
+      ```
+    - `useScroll`: 스크롤 위치를 추적할 수 있음
+      - scrollX, scrollY, scrollXProgress(0 ~ 1), scrollYProgress(0 ~ 1)
