@@ -309,3 +309,60 @@ https://nomadcoders.co/react-masterclass
       ```
     - `useScroll`: 스크롤 위치를 추적할 수 있음
       - scrollX, scrollY, scrollXProgress(0 ~ 1), scrollYProgress(0 ~ 1)
+    - `AnimatePresence`: 내부 요소 중에 사라졌다가 나타나는 요소의 애니메이션을
+      적용할 때 사용, 내부 요소가 visible 상태여야 적용 가능
+      ```tsx
+      <AnimatePresence>
+        {showing && (
+          <Box variants={boxVariants} initial="initial" animate="visible" />
+        )}
+      </AnimatePresence>
+      ```
+      - `mode`:
+        - `sync`(default)
+        - `popLayout`(새기능: 레이아웃에서 벗어나는 자식요소들이 즉시 팝되어 애
+          니메이션 됨)
+        - `wait`(컴포넌트가 사라지는 것을기다림) (exitBeforeEnter)
+    - `custom`: variants를 동적으로 설정하기 위한 속성
+      ```tsx
+      const boxVariants: Variants = {
+        entry: (isBack: boolean) => ({
+          x: isBack ? -500 : 500,
+          opacity: 0,
+          scale: 0,
+        }),
+        ...
+      };
+      ```
+    - `layout`: 레이아웃이 변경되는 경우 자동으로 애니메이션 적용
+      ```tsx
+      <Wrapper onClick={toggleClicked}>
+        <Box>
+          <Circle layout />
+        </Box>
+      </Wrapper>
+      ```
+    - `layoutId`: 동일한 `layoutId`를 가진 여러 컴포넌트 간에 공유 레이아웃 전환
+      모달 띄울 때 매우 강력할 듯
+      ```tsx
+      <Wrapper>
+        <Grid>
+          {Array.from({ length: 4 }).map((_, i) => (
+            <Box key={i} layoutId={`${i}`} onClick={() => onModal(i)} />
+          ))}
+        </Grid>
+        <AnimatePresence>
+          {id && (
+            <Overlay
+              variants={overlayVariants}
+              initial="initial"
+              animate="visible"
+              exit="exit"
+              onClick={closeModal}
+            >
+              <Box layoutId={`${id}`} />
+            </Overlay>
+          )}
+        </AnimatePresence>
+      </Wrapper>
+      ```
