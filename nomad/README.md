@@ -373,3 +373,6 @@ https://nomadcoders.co/react-masterclass
   - 배운걸 토대로 Netflix Clone 프로젝트
   - Header Search 애니메이션을 framer 필요없이 css로 충분히 가능 (width: 0 =>
     width)
+  - Framer
+    - `useAnimation`: 애니메이션을 컨트롤할 수 있음
+    -

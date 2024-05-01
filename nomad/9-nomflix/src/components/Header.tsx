@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useMatch } from 'react-router-dom';
 import styled from 'styled-components';
-import { motion, type Variants } from 'framer-motion';
+import { motion, useAnimation, useScroll, type Variants } from 'framer-motion';
 
 const logoVariants: Variants = {
   normal: {
@@ -15,15 +15,44 @@ const logoVariants: Variants = {
   },
 };
 
+const navVariants: Variants = {
+  top: {
+    backgroundColor: 'rgba(0, 0, 0, 0)',
+  },
+  scroll: {
+    backgroundColor: 'rgba(0, 0, 0, 1)',
+  },
+};
+
 export default function Header() {
   const [searchOpen, setSearchOpen] = useState(false);
   const homeMatch = useMatch('/');
   const tvMatch = useMatch('/tv');
+  const navAnimation = useAnimation();
+  const inputAnimation = useAnimation();
+  const { scrollY } = useScroll();
 
-  const toggleSearch = () => setSearchOpen((prev) => !prev);
+  const toggleSearch = () => {
+    if (searchOpen) {
+      inputAnimation.start({ scaleX: 0 });
+    } else {
+      inputAnimation.start({ scaleX: 1 });
+    }
+    setSearchOpen((prev) => !prev);
+  };
+
+  useEffect(() => {
+    scrollY.on('change', (val) => {
+      if (val > 80) {
+        navAnimation.start('scroll');
+      } else {
+        navAnimation.start('top');
+      }
+    });
+  }, [scrollY, navAnimation]);
 
   return (
-    <Nav>
+    <Nav variants={navVariants} animate={navAnimation} initial="top">
       <Col>
         <Logo
           variants={logoVariants}
@@ -68,7 +97,7 @@ export default function Header() {
           <Input
             initial={{ scaleX: 0 }}
             transition={{ type: 'linear' }}
-            animate={{ scaleX: searchOpen ? 1 : 0 }}
+            animate={inputAnimation}
             placeholder="Search for movie or tv show..."
           />
         </Search>
@@ -77,7 +106,7 @@ export default function Header() {
   );
 }
 
-const Nav = styled.nav`
+const Nav = styled(motion.nav)`
   position: fixed;
   display: flex;
   top: 0;
