@@ -375,4 +375,15 @@ https://nomadcoders.co/react-masterclass
     width)
   - Framer
     - `useAnimation`: 애니메이션을 컨트롤할 수 있음
-    -
+    - `AnimatePresence`
+      - `onExitComplete`: exit이 끝났을 때 실행할 함수를 설정할 수 있음
+      - initial에 false를 주면 컴포넌트가 처음 Mount될 때 애니메이션이 실행되지
+        않음
+      - layoutId를 활용해서 모달을 띄울 때 스크롤 위치를 계산하기 위해
+        `useScroll`를 활용하여 좌표값 지정 필요, 해당 값에 수치를 더할 때는
+        `.get()`을 사용 ex: `scrollY.get() + 100`
+  - `URLSearchParams`: url의 쿼리스트링을 가져올 수 있음
+    ```tsx
+    const searchParams = new URLSearchParams(location.search);
+    const search = searchParams.get('search');
+    ```
