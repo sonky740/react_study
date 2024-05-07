@@ -367,7 +367,7 @@ https://nomadcoders.co/react-masterclass
       </Wrapper>
       ```
 
-## 6주차 - 2024.05.02
+## 6주차 - 2024.05.09
 
 - Netflix Clone
   - 배운걸 토대로 Netflix Clone 프로젝트
@@ -386,4 +386,35 @@ https://nomadcoders.co/react-masterclass
     ```tsx
     const searchParams = new URLSearchParams(location.search);
     const search = searchParams.get('search');
+    ```
+
+## 7주차 - 2024.05.16
+
+- Gatsby
+  - 정적 사이트 생성기
+  - Gatsby도 개발 모드일 때는 정적 사이트가 아님 (CRA와 동일)
+  - Methods
+    - `Head`: head 태그에 메타데이터를 추가할 수 있음
+      ```tsx
+      export const Head = () => {
+        return <title>title</title>;
+      };
+      ```
+    - `Seo`: SEO를 위한 컴포넌트
+      ```tsx
+      export const Seo = ({ title }) => {
+        return <title>title</title>;
+      };
+      ```
+  - useStaticQuery: GraphQL을 사용하여 데이터를 가져올 수 있음
+    ```tsx
+    const data = useStaticQuery(graphql`
+      query {
+        site {
+          siteMetadata {
+            title
+          }
+        }
+      }
+    `);
     ```
