@@ -391,22 +391,25 @@ https://nomadcoders.co/react-masterclass
 ## 7주차 - 2024.05.16
 
 - Gatsby
+
   - 정적 사이트 생성기
   - Gatsby도 개발 모드일 때는 정적 사이트가 아님 (CRA와 동일)
-  - Methods
-    - `Head`: head 태그에 메타데이터를 추가할 수 있음
-      ```tsx
-      export const Head = () => {
-        return <title>title</title>;
-      };
-      ```
-    - `Seo`: SEO를 위한 컴포넌트
-      ```tsx
-      export const Seo = ({ title }) => {
-        return <title>title</title>;
-      };
-      ```
-  - useStaticQuery: GraphQL을 사용하여 데이터를 가져올 수 있음
+  - graphql: vscode 확장 프로그램
+    [GraphQL: Language Feature Support](https://marketplace.visualstudio.com/items?itemName=GraphQL.vscode-graphql),
+    [GraphQL: Syntax Highlighting](https://marketplace.visualstudio.com/items?itemName=GraphQL.vscode-graphql-syntax)
+  - `Head`: head 태그에 메타데이터를 추가할 수 있음
+    ```tsx
+    export const Head = () => {
+      return <title>title</title>;
+    };
+    ```
+  - `Seo`: SEO를 위한 컴포넌트
+    ```tsx
+    export const Seo = ({ title }) => {
+      return <title>title</title>;
+    };
+    ```
+  - `useStaticQuery`: GraphQL을 사용하여 데이터를 가져올 수 있음
     ```tsx
     const data = useStaticQuery(graphql`
       query {
@@ -418,3 +421,59 @@ https://nomadcoders.co/react-masterclass
       }
     `);
     ```
+  - `gatsby-source-filesystem`: Gatsby가 내 파일을 읽을 수 있도록 하는 라이브러
+    리
+    ```tsx
+    // 파일 이름 가져오기
+    graphql`
+      query {
+        allFile {
+          nodes {
+            name
+          }
+        }
+      }
+    `;
+    ```
+  - `gatsby-plugin-mdx`: mdx 파일을 읽을 수 있도록 하는 라이브러리.  
+    파일명을 {mdx.frontmatter\_\_slug}로 설정하면 frontmatter에 slug로 설정하여
+    라우터 설정가능
+  - `query`: GraphQL을 사용하여 데이터를 가져올 수 있음
+
+    ```tsx
+    export default function BlogPost({ data, children }: PageProps<Queries.PostDetailQuery>) {...}
+    export const query = graphql`
+      query PostDetail($frontmatter__slug: String) {
+        mdx(frontmatter: { slug: { eq: $frontmatter__slug } }) {
+          body
+          frontmatter {
+            category
+            date
+            author
+            slug
+            title
+          }
+        }
+      }
+    `;
+    ```
+
+    query 이름을 기반으로 타입을 생성해줌
+
+  - `gatsby-plugin-image`: 이미지 최적화를 위한 라이브러리
+    - 이미지를 빌드할 때 webp로 변환하여 최적화해줌
+    - 자동으로 스켈레톤 UI를 생성해줌
+    - `StaticImage`: 정적 이미지를 가져올 수 있음
+      ```tsx
+      <StaticImage src="../images/image.jpg" alt="image" />
+      ```
+    - `getImage`: 이미지를 가져올 수 있음
+      ```tsx
+      const image = getImage(
+        data.mdx?.frontmatter?.headerImage?.childImageSharp?.gatsbyImageData!
+      );
+      ```
+    - `GatsbyImage`: 동적 이미지를 가져올 수 있음
+      ```tsx
+      <GatsbyImage image={image} alt="image" />
+      ```
