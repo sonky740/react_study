@@ -477,3 +477,25 @@ https://nomadcoders.co/react-masterclass
       ```tsx
       <GatsbyImage image={image} alt="image" />
       ```
+  - `gatsby-browser.ts`: 브라우저에서 사용할 설정을 추가할 수 있음
+
+- [contentful](https://www.contentful.com/) (CMS)
+
+  - contentful에서 데이터를 가져오기 위해 `gatsby-source-contentful` 사용
+  - `gatsby-config.js`에 `gatsby-source-contentful` 설정 추가
+    ```tsx
+    {
+      resolve: `gatsby-source-contentful`,
+      options: {
+        spaceId: process.env.CONTENTFUL_SPACE_ID,
+        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+      },
+    },
+    ```
+
+- [pico](https://picocss.com/) (Css Framework)
+
+  - 기본 html 태그에 스타일이 적용되어 있음
+
+- 배포엔 [netlify](https://www.netlify.com/) 를 사용했는데 예전엔 Gastby Cloud를
+  사용했었음. 지금은 공식적으로는 netlify를 사용하라고 함.

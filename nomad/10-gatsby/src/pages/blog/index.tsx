@@ -6,7 +6,7 @@ import { PageProps, graphql, Link } from 'gatsby';
 export default function blog({ data }: PageProps<Queries.BlogPostsQuery>) {
   return (
     <Layout title="Blog">
-      <section>
+      <section className="grid">
         {data.allMdx.nodes.map((file, i) => (
           <article key={i}>
             <Link to={`/blog/${file.frontmatter?.slug}`}>
